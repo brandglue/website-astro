@@ -111,6 +111,14 @@ const typographyCSS = typography.toString();
 
   </head>
   <body>
+    <!-- Static noscript banner — lives outside the React island to avoid
+         React 19 omitting <noscript> from SSR output (causing hydration mismatch). -->
+    <noscript>
+      <style>html { visibility: visible !important; }</style>
+      <div style="display:flex;justify-content:center;background:#828487;color:#fff;padding:10px;">
+        This site works better with JavaScript enabled.
+      </div>
+    </noscript>
     <slot />
   </body>
 </html>

@@ -5,6 +5,7 @@ import styled, {
   createGlobalStyle,
   keyframes,
   withTheme,
+  StyleSheetManager,
   ThemeContext,
   ThemeProvider,
 } from 'styled-components';
@@ -16,6 +17,7 @@ export {
   css,
   createGlobalStyle,
   keyframes,
+  StyleSheetManager,
   ThemeContext,
   ThemeProvider,
   withTheme,

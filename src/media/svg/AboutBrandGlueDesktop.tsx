@@ -16,14 +16,14 @@ export const AboutBrandGlueDesktop: FC<IOwnProps> = ({ className = '' }) => (
 	>
   <defs>
     <linearGradient id="linear-gradient" x1="6" y1="1012.6" x2="900" y2="1012.6" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#828487"/>
-      <stop offset=".2" stop-color="#778392"/>
-      <stop offset=".6" stop-color="#5981b1"/>
-      <stop offset="1" stop-color="#2a7de1"/>
+      <stop offset="0" stopColor="#828487"/>
+      <stop offset=".2" stopColor="#778392"/>
+      <stop offset=".6" stopColor="#5981b1"/>
+      <stop offset="1" stopColor="#2a7de1"/>
     </linearGradient>
   </defs>
   <path d="M339,401.1h0c21.2-17.1,33.6-42.8,33.6-70.1v-16c0-27.7,12.8-53.9,34.8-70.9l23.8-18.4c21.7-16.8,34.4-42.7,34.4-70.2v-13.5h24v28.5c0,27.4-15.7,53.4-37.4,70.2l-23.8,18.4c-21.9,17-31.8,39.2-31.8,66.9v16c0,20.6-10,44.3-22.6,60.1l-35-1" fill="#7cb0c2"/>
-  <path d="M6,142.1h761c71.8,0,130,58.2,130,130h0c0,71.8-58.2,130-130,130H189.5c-64.9,0-117.5,52.6-117.5,117.5h0c0,64.9,52.6,117.5,117.5,117.5h570c75.9,0,137.5,61.6,137.5,137.5h0c0,75.9-61.6,137.5-137.5,137.5H235.7c-89.4,0-161.8,72.4-161.8,161.8h0c0,89.4,72.4,161.8,161.8,161.8h499.5c89.4,0,161.8,72.4,161.8,161.8h0c0,89.4-72.4,161.8-161.8,161.8l-456.3.2h-43.2c-89.4,0-161.8,72.4-161.8,161.8s72.4,161.8,161.8,161.8h313.8" fill="none" stroke="url(#linear-gradient)" stroke-width="6px" stroke-miterlimit="10"/>
+  <path d="M6,142.1h761c71.8,0,130,58.2,130,130h0c0,71.8-58.2,130-130,130H189.5c-64.9,0-117.5,52.6-117.5,117.5h0c0,64.9,52.6,117.5,117.5,117.5h570c75.9,0,137.5,61.6,137.5,137.5h0c0,75.9-61.6,137.5-137.5,137.5H235.7c-89.4,0-161.8,72.4-161.8,161.8h0c0,89.4,72.4,161.8,161.8,161.8h499.5c89.4,0,161.8,72.4,161.8,161.8h0c0,89.4-72.4,161.8-161.8,161.8l-456.3.2h-43.2c-89.4,0-161.8,72.4-161.8,161.8s72.4,161.8,161.8,161.8h313.8" fill="none" stroke="url(#linear-gradient)" strokeWidth="6px" strokeMiterlimit="10"/>
   <circle cx="72" cy="142.1" r="66" fill="#005ada"/>
   <circle cx="624" cy="142.1" r="26" fill="#ffad00"/>
   <circle cx="457" cy="401.1" r="36" fill="#ffad00"/>
@@ -35,81 +35,81 @@ export const AboutBrandGlueDesktop: FC<IOwnProps> = ({ className = '' }) => (
   <circle cx="521.3" cy="1881.6" r="66" fill="#ffad00"/>
   <circle cx="72" cy="516.1" r="66" fill="#005ada"/>
   <rect x="16" y="225.1" width="456" height="100" fill="none"/>
-  <text transform="translate(16 240)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2009</tspan></text>
-  <text transform="translate(16 258)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">BrandGlue is born!</tspan></text>
-  <text transform="translate(16 284)" font-size="18px" font-family="Lato-Light, Lato" font-weight="300"><tspan x="0" y="0" xmlSpace="preserve">Started in a college dorm room,  </tspan></text>
-  <text transform="translate(16 302)" font-size="18px" font-family="Lato-Light, Lato" font-weight="300"><tspan x="0" y="0">focused solely on Facebook marketing.</tspan></text>
+  <text transform="translate(16 240)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2009</tspan></text>
+  <text transform="translate(16 258)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">BrandGlue is born!</tspan></text>
+  <text transform="translate(16 284)" fontSize="18px" fontFamily="Lato-Light, Lato" fontWeight="300"><tspan x="0" y="0" xmlSpace="preserve">Started in a college dorm room,  </tspan></text>
+  <text transform="translate(16 302)" fontSize="18px" fontFamily="Lato-Light, Lato" fontWeight="300"><tspan x="0" y="0">focused solely on Facebook marketing.</tspan></text>
   <rect x="311" y="38.9" width="228" height="100" fill="none"/>
-  <text transform="translate(311 53.7)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2010</tspan></text>
-  <text transform="translate(311 71.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Team grows to 4 people and </tspan></text>
-  <text transform="translate(311 89.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">3 cats, expands to LinkedIn </tspan></text>
-  <text transform="translate(311 107.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">and Twitter marketing.</tspan></text>
+  <text transform="translate(311 53.7)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2010</tspan></text>
+  <text transform="translate(311 71.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Team grows to 4 people and </tspan></text>
+  <text transform="translate(311 89.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">3 cats, expands to LinkedIn </tspan></text>
+  <text transform="translate(311 107.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">and Twitter marketing.</tspan></text>
   <rect x="598" y="39.3" width="269.3" height="100" fill="none"/>
-  <text transform="translate(598 54.2)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2011</tspan></text>
-  <text transform="translate(598 72.9)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Helped the Washington Football </tspan></text>
-  <text transform="translate(598 90.9)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Club become the fastest growing </tspan></text>
-  <text transform="translate(598 108.9)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">NFL team on Facebook.</tspan></text>
+  <text transform="translate(598 54.2)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2011</tspan></text>
+  <text transform="translate(598 72.9)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Helped the Washington Football </tspan></text>
+  <text transform="translate(598 90.9)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Club become the fastest growing </tspan></text>
+  <text transform="translate(598 108.9)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">NFL team on Facebook.</tspan></text>
   <rect x="598" y="234.1" width="228" height="100" fill="none"/>
-  <text transform="translate(598 248.9)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2012</tspan></text>
-  <text transform="translate(598 266.9)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0" xmlSpace="preserve">Helped YouTube become  </tspan></text>
-  <text transform="translate(598 284.9)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">the fastest growing fan page </tspan></text>
-  <text transform="translate(598 302.9)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">on all of Facebook.</tspan></text>
+  <text transform="translate(598 248.9)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2012</tspan></text>
+  <text transform="translate(598 266.9)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0" xmlSpace="preserve">Helped YouTube become  </tspan></text>
+  <text transform="translate(598 284.9)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">the fastest growing fan page </tspan></text>
+  <text transform="translate(598 302.9)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">on all of Facebook.</tspan></text>
   <rect x="425" y="454.8" width="228" height="100" fill="none"/>
-  <text transform="translate(425 469.6)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2013</tspan></text>
-  <text transform="translate(425 487.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0" xmlSpace="preserve">Team grows to 6 people,  </tspan></text>
-  <text transform="translate(425 505.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">4 cats, 1 dog, 1 horse, </tspan></text>
-  <text transform="translate(425 523.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">expands to Instagram </tspan></text>
-  <text transform="translate(425 541.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">marketing.</tspan></text>
+  <text transform="translate(425 469.6)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2013</tspan></text>
+  <text transform="translate(425 487.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0" xmlSpace="preserve">Team grows to 6 people,  </tspan></text>
+  <text transform="translate(425 505.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">4 cats, 1 dog, 1 horse, </tspan></text>
+  <text transform="translate(425 523.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">expands to Instagram </tspan></text>
+  <text transform="translate(425 541.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">marketing.</tspan></text>
   <rect x="257" y="454.8" width="127.1" height="100" fill="none"/>
-  <text transform="translate(257 469.6)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2014</tspan></text>
-  <text transform="translate(257 487.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Team speaks at </tspan></text>
-  <text transform="translate(257 505.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">SXSW on social </tspan></text>
-  <text transform="translate(257 523.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">media.</tspan></text>
+  <text transform="translate(257 469.6)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2014</tspan></text>
+  <text transform="translate(257 487.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Team speaks at </tspan></text>
+  <text transform="translate(257 505.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">SXSW on social </tspan></text>
+  <text transform="translate(257 523.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">media.</tspan></text>
   <rect x="18.4" y="670.1" width="165.1" height="100" fill="none"/>
-  <text transform="translate(18.5 685)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2015</tspan></text>
-  <text transform="translate(18.5 703)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Helped grow </tspan></text>
-  <text transform="translate(18.5 721)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Eloqua's Facebook </tspan></text>
-  <text transform="translate(18.5 739)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">community by </tspan></text>
-  <text transform="translate(18.5 757)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">2,500%.</tspan></text>
+  <text transform="translate(18.5 685)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2015</tspan></text>
+  <text transform="translate(18.5 703)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Helped grow </tspan></text>
+  <text transform="translate(18.5 721)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Eloqua's Facebook </tspan></text>
+  <text transform="translate(18.5 739)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">community by </tspan></text>
+  <text transform="translate(18.5 757)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">2,500%.</tspan></text>
   <rect x="271" y="670.1" width="171" height="141.9" fill="none"/>
-  <text transform="translate(271 685)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2016</tspan></text>
-  <text transform="translate(271 703)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Partnered on client </tspan></text>
-  <text transform="translate(271 721)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">case study (Jackson </tspan></text>
-  <text transform="translate(271 739)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Kayak) with Social </tspan></text>
-  <text transform="translate(271 757)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Media Examiner.</tspan></text>
-  <text transform="translate(271 787)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Case study trended </tspan></text>
-  <text transform="translate(271 805)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">on Slideshare.</tspan></text>
+  <text transform="translate(271 685)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2016</tspan></text>
+  <text transform="translate(271 703)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Partnered on client </tspan></text>
+  <text transform="translate(271 721)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">case study (Jackson </tspan></text>
+  <text transform="translate(271 739)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Kayak) with Social </tspan></text>
+  <text transform="translate(271 757)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Media Examiner.</tspan></text>
+  <text transform="translate(271 787)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Case study trended </tspan></text>
+  <text transform="translate(271 805)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">on Slideshare.</tspan></text>
   <rect x="624" y="670.1" width="189.1" height="100" fill="none"/>
-  <text transform="translate(624 685)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2017</tspan></text>
-  <text transform="translate(624 703)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Team expands to all </tspan></text>
-  <text transform="translate(624 721)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">U.S. mainland </tspan></text>
-  <text transform="translate(624 739)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">timezones. </tspan></text>
+  <text transform="translate(624 685)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2017</tspan></text>
+  <text transform="translate(624 703)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Team expands to all </tspan></text>
+  <text transform="translate(624 721)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">U.S. mainland </tspan></text>
+  <text transform="translate(624 739)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">timezones. </tspan></text>
   <rect x="511.9" y="943.8" width="238.9" height="160.5" fill="none"/>
-  <text transform="translate(447.9 958.7)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2019</tspan></text>
-  <text transform="translate(447.9 976.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Clients spread across the B2B </tspan></text>
-  <text transform="translate(447.9 994.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">tech landscape. </tspan></text>
-  <text transform="translate(447.9 1024.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Instagram influencer program </tspan></text>
-  <text transform="translate(447.9 1042.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">for B2B companies a big </tspan></text>
-  <text transform="translate(447.9 1060.7)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">success.</tspan></text>
-  <text transform="translate(606.2 1854)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">Today</tspan></text>
+  <text transform="translate(447.9 958.7)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2019</tspan></text>
+  <text transform="translate(447.9 976.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Clients spread across the B2B </tspan></text>
+  <text transform="translate(447.9 994.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">tech landscape. </tspan></text>
+  <text transform="translate(447.9 1024.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Instagram influencer program </tspan></text>
+  <text transform="translate(447.9 1042.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">for B2B companies a big </tspan></text>
+  <text transform="translate(447.9 1060.7)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">success.</tspan></text>
+  <text transform="translate(606.2 1854)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">Today</tspan></text>
   <rect x="285" y="1253.8" width="238.9" height="160.5" fill="none"/>
-  <text transform="translate(265 1288.6)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2021</tspan></text>
-  <text transform="translate(265 1306.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">B2B client list grows across </tspan></text>
-  <text transform="translate(265 1324.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">sectors, from cybersecurity to </tspan></text>
-  <text transform="translate(265 1342.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">multi-cloud networking to </tspan></text>
-  <text transform="translate(265 1360.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">healthcare.</tspan></text>
+  <text transform="translate(265 1288.6)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2021</tspan></text>
+  <text transform="translate(265 1306.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">B2B client list grows across </tspan></text>
+  <text transform="translate(265 1324.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">sectors, from cybersecurity to </tspan></text>
+  <text transform="translate(265 1342.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">multi-cloud networking to </tspan></text>
+  <text transform="translate(265 1360.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">healthcare.</tspan></text>
   <rect x="674.9" y="1369.3" width="238.9" height="160.5" fill="none"/>
-  <text transform="translate(644.9 1384.2)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2022</tspan></text>
+  <text transform="translate(644.9 1384.2)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2022</tspan></text>
   <rect x="624" y="788.1" width="189.1" height="100" fill="none"/>
-  <text transform="translate(624 803)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2018</tspan></text>
-  <text transform="translate(624 821)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Team grows to 10 </tspan></text>
-  <text transform="translate(624 839)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0" xmlSpace="preserve">people, 4 cats, 3 dogs,  </tspan></text>
-  <text transform="translate(624 857)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">1 horse, 3 babies.</tspan></text>
+  <text transform="translate(624 803)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2018</tspan></text>
+  <text transform="translate(624 821)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Team grows to 10 </tspan></text>
+  <text transform="translate(624 839)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0" xmlSpace="preserve">people, 4 cats, 3 dogs,  </tspan></text>
+  <text transform="translate(624 857)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">1 horse, 3 babies.</tspan></text>
   <rect x="132" y="1033.4" width="279.6" height="100" fill="none"/>
-  <text transform="translate(152 1048.2)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2020</tspan></text>
-  <text transform="translate(152 1066.2)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Team helps all clients survive and </tspan></text>
-  <text transform="translate(152 1084.2)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">thrive with social media efforts </tspan></text>
-  <text transform="translate(152 1102.2)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">during the Coronavirus pandemic.</tspan></text>
+  <text transform="translate(152 1048.2)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2020</tspan></text>
+  <text transform="translate(152 1066.2)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Team helps all clients survive and </tspan></text>
+  <text transform="translate(152 1084.2)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">thrive with social media efforts </tspan></text>
+  <text transform="translate(152 1102.2)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">during the Coronavirus pandemic.</tspan></text>
   <g>
     <rect x="517.9" y="337.1" width="6" height="23.5" fill="#b09f8e"/>
     <polygon points="509 325.6 521 293.6 533 325.6 509 325.6" fill="#3b7558"/>
@@ -233,8 +233,8 @@ export const AboutBrandGlueDesktop: FC<IOwnProps> = ({ className = '' }) => (
   <path d="M817.8,427.9c.4-1.4,1.2-2.7,2.3-3.8,1.1-1,2.7-1.8,4.4-1.7,1.7.2,3,1.1,4.1,2.1s2.1,2,3,3.2h-1c.6-1.3,1.4-2.6,2.6-3.7,1.2-1,2.7-1.8,4.4-1.8s3.3.8,4.4,1.8l.8.8c.2.3.5.6.6.9.2.3.4.6.5,1l.2.5v.2c0,0,0,.1,0,.1h0c0,.1,0,.1,0,.1-.2.1,0,0,0,0h0c0-.1-.2-.3-.2-.3l-.4-.4c-.2-.3-.5-.5-.8-.7-.5-.4-1-.8-1.6-1.2-1.1-.6-2.2-1-3.4-.9-1.1.1-2.2.5-3.3,1.2-1,.7-1.9,1.7-2.8,2.8l-.4.9-.3-.8c-.5-1.3-1.3-2.5-2.4-3.3-1.1-.8-2.5-1-3.7-.9-1.2.1-2.3.5-3.4,1.3-1.1.7-2,1.7-3.1,2.7h-.3Z" fill="#4d4d4d"/>
   <path d="M381.2,265.3s-13.3,19.1-13.2,18.8,2.7-10,2.7-10l6.3-6.7,4.2-2.1Z" fill="#635342"/>
   <polygon points="419.3 280.9 426.2 268.8 423.8 262.1 417.1 255.2 409 253 389.3 253 377 262.1 377 267.4 385.3 264.3 403.8 264.1 415.1 271.8 419.3 280.9" fill="#635342"/>
-  <path d="M368,284.1h0c0-11,8.9-20,20-20h11.4c11,0,20,8.9,20,20h0" fill="none" stroke-miterlimit="10" stroke="#8c704c" stroke-width="3px"/>
-  <path d="M375.5,268.5c1.7-9.3,9.9-16.3,19.6-16.3h11.4c11,0,20,8.9,20,20h0" fill="none" stroke-miterlimit="10" stroke="#8c704c" stroke-width="3px"/>
+  <path d="M368,284.1h0c0-11,8.9-20,20-20h11.4c11,0,20,8.9,20,20h0" fill="none" strokeMiterlimit="10" stroke="#8c704c" strokeWidth="3px"/>
+  <path d="M375.5,268.5c1.7-9.3,9.9-16.3,19.6-16.3h11.4c11,0,20,8.9,20,20h0" fill="none" strokeMiterlimit="10" stroke="#8c704c" strokeWidth="3px"/>
   <g>
     <path d="M767.5,504c-1.2-1.7-.6-4,1-5.2,6.7-4.8,10.9-13.8,10.9-19.4,0-14.7-20.1-25.6-38.8-18.3-18,7-.7,20.3-33.7,20.1-35.8-.3-64.5,15.6-64.5,34.9s28.9,34.9,64.5,34.9,64.5-15.6,64.5-34.9c0-4.3-1.3-8.3-3.9-12.1Z" fill="#7cb0c2"/>
     <ellipse cx="791.4" cy="551.1" rx="24.3" ry="14" fill="#7cb0c2"/>
@@ -279,16 +279,16 @@ export const AboutBrandGlueDesktop: FC<IOwnProps> = ({ className = '' }) => (
     <path d="M291.2,1473.1c.5-3.1-.4-5.7-2.8-7.9,2-.7,3.9-1.4,5.7-2,10-3.5,20-7,30.1-10.5,1.5-.5,2.3-.3,3.3.9,1.3,1.6,2,3.5,1.3,5.5-.2.6-.8,1.2-1.3,1.4-12,4.2-24,8.4-36,12.6,0,0-.1,0-.3,0Z" fill="#b09f8e"/>
   </g>
   <rect x="613" y="1579.1" width="318.2" height="130" fill="none"/>
-  <text transform="translate(593 1592)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2023</tspan></text>
-  <text transform="translate(593 1612)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Helped clients manage social media at </tspan></text>
-  <text transform="translate(593 1630)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">in-person events.</tspan></text>
-  <text transform="translate(593 1660)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Provided trainings for clients on </tspan></text>
-  <text transform="translate(593 1678)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">employee social engagement platforms.</tspan></text>
+  <text transform="translate(593 1592)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2023</tspan></text>
+  <text transform="translate(593 1612)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Helped clients manage social media at </tspan></text>
+  <text transform="translate(593 1630)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">in-person events.</tspan></text>
+  <text transform="translate(593 1660)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Provided trainings for clients on </tspan></text>
+  <text transform="translate(593 1678)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">employee social engagement platforms.</tspan></text>
   <path d="M524.4,1612.6c3.8-4.4,10-6.2,12.6.2l.3.8.6-.8c3.4-4.6,7.6-5.4,11.8-1.1.2.2.5.5.8.7h0s0,0,0,0c.2,0,0,0,0,0-.9-2.9-3.4-5.5-6.7-5.6-3.3,0-5.8,2.7-7,5.5h1c-2.8-3.6-7.1-7.6-11.5-3.6-1.1,1.1-1.9,2.4-2.3,3.8l.2.3h0Z" fill="#4d4d4d"/>
   <rect x="675" y="1392" width="191.7" height="161" fill="none"/>
-  <text transform="translate(645 1405.3)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Multiple clients invest</tspan></text>
-  <text transform="translate(645 1426.9)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">in executive social </tspan></text>
-  <text transform="translate(645 1448.5)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">media efforts.</tspan></text>
+  <text transform="translate(645 1405.3)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Multiple clients invest</tspan></text>
+  <text transform="translate(645 1426.9)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">in executive social </tspan></text>
+  <text transform="translate(645 1448.5)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">media efforts.</tspan></text>
   <circle cx="372.6" cy="1235.7" r="36.7" fill="#ffad00"/>
   <circle cx="527.9" cy="911.8" r="36.7" fill="#ffad00"/>
   <circle cx="325" cy="142.1" r="14" fill="#828487"/>
@@ -299,12 +299,12 @@ export const AboutBrandGlueDesktop: FC<IOwnProps> = ({ className = '' }) => (
   <circle cx="362.5" cy="1559.3" r="14" fill="#828487"/>
   <rect x="182.6" y="1612.5" width="269.3" height="100" fill="none"/>
   <g>
-    <text transform="translate(284 1598.3)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2024</tspan></text>
-    <text transform="translate(284 1624.3)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Team helps B2B clients </tspan><tspan x="0" y="21.6">with social influencer </tspan><tspan x="0" y="43.2">strategies and campaigns.</tspan></text>
+    <text transform="translate(284 1598.3)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2024</tspan></text>
+    <text transform="translate(284 1624.3)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Team helps B2B clients </tspan><tspan x="0" y="21.6">with social influencer </tspan><tspan x="0" y="43.2">strategies and campaigns.</tspan></text>
   </g>
-  <text transform="translate(606.2 1873.8)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">Large team managing over</tspan><tspan x="0" y="21.6">112 social profiles, 14 Hootsuite </tspan><tspan x="0" y="43.2">accounts, 21 animals, and 14 kids.</tspan></text>
-  <text transform="translate(159.3 1723.7)" fill="#2a7de1" font-family="Lato-Bold, Lato" font-size="20px" font-weight="700"><tspan x="0" y="0">2025</tspan></text>
-  <text transform="translate(159.3 1743.6)" font-size="18px" font-family="Lato-Regular, Lato"><tspan x="0" y="0">In the year of AI, the team helps </tspan><tspan x="0" y="21.6">clients smartly navigate social tools </tspan><tspan x="0" y="43.2">and strategies.</tspan></text>
+  <text transform="translate(606.2 1873.8)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">Large team managing over</tspan><tspan x="0" y="21.6">112 social profiles, 14 Hootsuite </tspan><tspan x="0" y="43.2">accounts, 21 animals, and 14 kids.</tspan></text>
+  <text transform="translate(159.3 1723.7)" fill="#2a7de1" fontFamily="Lato-Bold, Lato" fontSize="20px" fontWeight="700"><tspan x="0" y="0">2025</tspan></text>
+  <text transform="translate(159.3 1743.6)" fontSize="18px" fontFamily="Lato-Regular, Lato"><tspan x="0" y="0">In the year of AI, the team helps </tspan><tspan x="0" y="21.6">clients smartly navigate social tools </tspan><tspan x="0" y="43.2">and strategies.</tspan></text>
   <g>
     <g>
       <path d="M647.5,1737.4c.5-.2,1.4-.9,1.6-1.2s1.4-1,3.3-1.4c1.8-.4,3.2-.6,3.3.2s-1.1,2.1-1.6,2.9c-.4.8-1.8,2.8-4.7,3.2-2.9.4-2-3.7-2-3.7Z" fill="#b09f8e"/>
