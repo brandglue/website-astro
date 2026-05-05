@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudyRoot from '../../components/CaseStudyRoot';
+import { MdxLink } from '../../components/core/links/MdxLink';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('case-studies');
+  return caseStudies.map((cs) => ({
+    params: { slug: cs.data.slug },
+    props: { cs },
+  }));
+}
+
+const { cs } = Astro.props;
+const { Content } = await render(cs);
+
+let logoSrc: string | undefined;
+if (cs.data.logo) {
+  const img = await getImage({ src: cs.data.logo, width: 400, format: 'webp' });
+  logoSrc = img.src;
+}
+
+const attachment = cs.data.attachment ?? cs.data.attachments;
+
+const path = `/case-studies/${cs.data.slug}/`;
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Case Studies', href: '/case-studies/' },
+  { label: cs.data.client, href: path },
+];
+---
+
+<BaseLayout
+  title={cs.data.title}
+  description={cs.data.description ?? `BrandGlue case study: ${cs.data.client}`}
+  path={path}
+  type="article"
+>
+  <CaseStudyRoot
+    client:load
+    caseStudy={{
+      client: cs.data.client,
+      title: cs.data.title,
+      slug: cs.data.slug,
+      logoSrc,
+      attachment,
+    }}
+    crumbs={crumbs}
+  >
+    <Content components={{ a: MdxLink }} />
+  </CaseStudyRoot>
+</BaseLayout>

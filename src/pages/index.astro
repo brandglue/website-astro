@@ -1,17 +1,86 @@
 ---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeRoot from '../components/home/HomeRoot';
 
+import logoMicrosoft from '../media/images/logo-microsoft.png';
+import logoKayak from '../media/images/logo-kayak.png';
+import logoIntuit from '../media/images/logo-intuit.png';
+import logoYoutube from '../media/images/logo-youtube.png';
+import logoQuickbooks from '../media/images/logo-quickbooks.png';
+import heroPoster from '../media/images/homepage-hero-poster.jpg';
+
+// Process hero poster
+const heroPosterImg = await getImage({ src: heroPoster, width: 1600, format: 'jpeg' });
+
+// Process featured client logos (the 5 shown on homepage)
+const [msImg, kayakImg, intuitImg, youtubeImg, quickbooksImg] = await Promise.all([
+  getImage({ src: logoMicrosoft, width: 200, format: 'webp' }),
+  getImage({ src: logoKayak, width: 200, format: 'webp' }),
+  getImage({ src: logoIntuit, width: 200, format: 'webp' }),
+  getImage({ src: logoYoutube, width: 200, format: 'webp' }),
+  getImage({ src: logoQuickbooks, width: 200, format: 'webp' }),
+]);
+
+const logos = [
+  { name: 'Microsoft', src: msImg.src },
+  { name: 'QuickBooks', src: quickbooksImg.src },
+  { name: 'Intuit', src: intuitImg.src },
+  { name: 'Kayak', src: kayakImg.src },
+  { name: 'YouTube', src: youtubeImg.src },
+];
+
+// Latest blog post
+const allPosts = await getCollection('blog');
+allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const latestRaw = allPosts[0];
+let latestPost: { slug: string; title: string; coverImageSrc?: string } | undefined;
+if (latestRaw) {
+  let coverImageSrc: string | undefined;
+  if (latestRaw.data.cover_image) {
+    const img = await getImage({ src: latestRaw.data.cover_image, width: 1100, format: 'webp' });
+    coverImageSrc = img.src;
+  }
+  latestPost = { slug: latestRaw.data.slug, title: latestRaw.data.title, coverImageSrc };
+}
+
+// Services (sorted by title)
+const allServices = await getCollection('services');
+allServices.sort((a, b) => a.data.title.localeCompare(b.data.title));
+const services = allServices.map((s) => ({
+  title: s.data.title,
+  shortDescription: s.data.shortDescription,
+  icon: s.data.icon,
+}));
+
+// Team (sorted by order, exclude "You?")
+const allTeam = await getCollection('team', ({ data }) => data.name !== 'You?');
+allTeam.sort((a, b) => a.data.order - b.data.order);
+const teamMembers = await Promise.all(
+  allTeam.map(async (member) => {
+    let imageSrc: string | undefined;
+    if (member.data.image) {
+      const img = await getImage({ src: member.data.image, width: 380, format: 'webp' });
+      imageSrc = img.src;
+    }
+    return { name: member.data.name, imageSrc };
+  })
+);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Home"
+  description="BrandGlue — A social media agency reaching your audience in the places they hang out most."
+  path="/"
+  type="website"
+>
+  <HomeRoot
+    client:load
+    posterSrc={heroPosterImg.src}
+    teamMembers={teamMembers}
+    logos={logos}
+    latestPost={latestPost}
+    services={services}
+  />
+</BaseLayout>

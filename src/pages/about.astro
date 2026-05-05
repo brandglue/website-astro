@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutRoot from '../components/pages/AboutRoot';
+
+// Team (sorted by order, exclude "You?")
+const allTeam = await getCollection('team', ({ data }) => data.name !== 'You?');
+allTeam.sort((a, b) => a.data.order - b.data.order);
+const team = await Promise.all(
+  allTeam.map(async (member) => {
+    let imageSrc: string | undefined;
+    if (member.data.image) {
+      const img = await getImage({ src: member.data.image, width: 380, format: 'webp' });
+      imageSrc = img.src;
+    }
+    return {
+      name: member.data.name,
+      title: member.data.title,
+      imageSrc,
+      twitter: member.data.twitter ?? null,
+      linkedin: member.data.linkedin ?? null,
+      loves: member.data.loves,
+      goals: member.data.goals,
+    };
+  })
+);
+
+// Active jobs sorted by title
+const allJobs = await getCollection('jobs', ({ data }) => data.isActive);
+allJobs.sort((a, b) => a.data.title.localeCompare(b.data.title));
+const jobs = allJobs.map((j) => ({ title: j.data.title, link: j.data.link }));
+---
+
+<BaseLayout
+  title="About"
+  description="About BrandGlue — a social media agency. Meet the team and learn our history."
+  path="/about/"
+  type="website"
+>
+  <AboutRoot client:load team={team} jobs={jobs} />
+</BaseLayout>

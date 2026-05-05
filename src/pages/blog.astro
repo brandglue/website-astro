@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogRoot from '../components/pages/BlogRoot';
+import { getExcerpt } from '../utils/getExcerpt';
+
+// All blog posts sorted by date DESC
+const allPosts = await getCollection('blog');
+allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const posts = await Promise.all(
+  allPosts.map(async (post) => {
+    let coverImageSrc: string | undefined;
+    if (post.data.cover_image) {
+      const img = await getImage({ src: post.data.cover_image, width: 1100, format: 'webp' });
+      coverImageSrc = img.src;
+    }
+    return {
+      slug: post.data.slug,
+      title: post.data.title,
+      excerpt: getExcerpt(post.body),
+      coverImageSrc,
+      categories: post.data.categories,
+    };
+  })
+);
+
+// Build categories with counts
+const categoryMap = new Map<string, number>();
+for (const post of allPosts) {
+  for (const cat of post.data.categories ?? []) {
+    categoryMap.set(cat, (categoryMap.get(cat) ?? 0) + 1);
+  }
+}
+const categories = [...categoryMap.entries()]
+  .map(([value, totalCount]) => ({ value, totalCount }))
+  .sort((a, b) => a.value.localeCompare(b.value));
+---
+
+<BaseLayout
+  title="Blog"
+  description="BrandGlue blog — social media insights, strategy, and news."
+  path="/blog/"
+  type="website"
+>
+  <BlogRoot client:load posts={posts} categories={categories} />
+</BaseLayout>

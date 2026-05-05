@@ -12,6 +12,28 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.8"
+    "@astrojs/mdx": "^5.0.2",
+    "@astrojs/react": "^5.0.1",
+    "@astrojs/sitemap": "^3.7.1",
+    "@mdx-js/react": "^3.1.1",
+    "@types/lodash": "^4.17.24",
+    "@types/lodash-es": "^4.17.12",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/styled-components": "^5.1.36",
+    "@types/styled-system": "^5.1.25",
+    "astro": "^6.0.8",
+    "babel-plugin-styled-components": "^2.1.4",
+    "classnames": "^2.5.1",
+    "compass-vertical-rhythm": "^1.4.5",
+    "flexsearch": "^0.7.21",
+    "lodash": "^4.17.23",
+    "lodash-es": "^4.17.23",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "styled-components": "^6.3.12",
+    "styled-icons": "^10.47.1",
+    "styled-system": "^5.1.5",
+    "typography": "^0.16.24"
   }
 }

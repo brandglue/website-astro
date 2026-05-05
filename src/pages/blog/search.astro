@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SearchRoot from '../../components/pages/SearchRoot';
+
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Search', href: '/blog/search/' },
+];
+---
+
+<BaseLayout
+  title="Blog Search"
+  description="Search BrandGlue blog posts."
+  path="/blog/search/"
+  type="website"
+>
+  <SearchRoot client:load crumbs={crumbs} />
+</BaseLayout>

@@ -1,0 +1,19 @@
+# top-level pages
+/free-assessment /contact
+/team /about
+/case-studies /clients
+
+# blog posts
+/blog/advertising/* /blog/:splat
+/blog/tips/* /blog/:splat
+/blog/case-studies/* /blog/:splat
+/blog/media-design/* /blog/:splat
+/blog/news/* /blog/:splat
+
+# blog categories
+/blog/category/ /blog
+/blog/category/media-design /blog/category/design
+/blog/category/careers /blog
+
+# case-studies
+/case-studies/* /clients

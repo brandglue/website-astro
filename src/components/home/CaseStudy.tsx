@@ -1,0 +1,87 @@
+import React, { FC } from 'react';
+
+import { Box, Image, P, NavLink } from '@components/core';
+import { css, minMediaQuery, rhythm, styled } from '@styles/index';
+import { TopLevelPages as Pages } from '@utils/routes';
+
+interface IProps {
+  logoSrc?: string;
+}
+
+export const CaseStudy: FC<IProps> = ({ logoSrc }) => {
+  return (
+    <Box bg="darkBlue">
+      <Container variant="section">
+        <Logo>
+          {logoSrc && (
+            <Image alt="whitehat-security" src={logoSrc} />
+          )}
+        </Logo>
+        <Text>
+          <CaseStudyTitle>Developing a holistic strategy</CaseStudyTitle>
+          <P color="white" mb="0">
+            {`How we boosted brand awareness \n and organic engagement for WhiteHat Security.`}
+            <CaseStudyLink
+              hasArrow
+              to={`/${Pages.CaseStudies}/whitehat-security/`}
+            >
+              See Case Study
+            </CaseStudyLink>
+          </P>
+        </Text>
+      </Container>
+    </Box>
+  );
+};
+
+const Container = styled(Box)`
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+
+  ${minMediaQuery.Medium(css`
+    flex-flow: row;
+    align-items: center;
+  `)};
+`;
+
+const Logo = styled(Box)`
+  ${({ theme }) => css`
+    flex: auto;
+    max-width: 200px;
+    margin-bottom: 1em;
+
+    ${minMediaQuery.Medium(css`
+      flex: 0 0 200px;
+      border-bottom: none;
+      border-right: 1px solid ${theme.colors.white};
+      padding: 20px 20px 20px 0;
+      margin: 20px 20px 20px 0;
+    `)}
+  `}
+`;
+
+const Text = styled(Box)`
+  flex: auto;
+
+  ${minMediaQuery.Medium(css`
+    flex: 0 0 500px;
+  `)};
+`;
+
+const CaseStudyTitle = styled.h5`
+  ${({ theme }) => css`
+    color: ${theme.colors.gold};
+    text-transform: uppercase;
+    margin-bottom: ${rhythm(0.25)};
+  `};
+`;
+
+const CaseStudyLink = styled(NavLink)`
+  ${({ theme }) => css`
+    color: ${theme.colors.gold};
+    margin-left: 0.6em;
+  `};
+`;
+
+export default CaseStudy;

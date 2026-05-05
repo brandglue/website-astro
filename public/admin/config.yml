@@ -1,0 +1,178 @@
+site_url: https://brandglue.com
+logo_url: /admin/BrandGlueLogo.svg
+
+backend:
+  name: git-gateway
+  squash_merges: true
+
+# Enable when using local git repo for populating cms
+# local_backend: true
+
+publish_mode: editorial_workflow
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: src/content/blog
+    path: '{{year}}/{{month}}/{{title}}/index'
+    slug: '{{slug}}'
+    preview_path: blog/{{title}}
+    extension: mdx
+    format: frontmatter
+    create: true
+    fields:
+      - { name: type, label: Type, widget: hidden, default: 'blog-post' }
+      - { name: title, label: Title, widget: string }
+      - {
+          name: author,
+          label: Author,
+          widget: relation,
+          collection: 'team',
+          searchFields: ['name'],
+          valueField: 'name',
+        }
+      - {
+          name: date,
+          label: Publish Date,
+          widget: datetime,
+          format: 'YYYY-MM-DD',
+        }
+      - {
+          name: slug,
+          label: Slug,
+          widget: string,
+          hint: 'The final part of the page url. Must be unique from all other blog posts. Example: put "my-blogpost" as the Slug if you want the final url to be https://brandglue.com/blog/my-blogpost',
+        }
+      - { name: cover_image, label: Cover Image, widget: image }
+      - {
+          name: categories,
+          label: Categories,
+          widget: select,
+          multiple: true,
+          options: ['Tips', 'News', 'Design', 'Advertising', 'Case Studies'],
+        }
+      - { name: body, label: Body, widget: markdown }
+    view_filters:
+      - label: 'Published: 2020'
+        field: date
+        pattern: '2020'
+      - label: Drafts
+        field: draft
+        pattern: true
+
+  - name: case-studies
+    label: Case Studies
+    label_singular: Case Study
+    folder: src/content/case-studies
+    path: '{{title}}/index'
+    slug: '{{slug}}'
+    preview_path: case-study/{{title}}
+    extension: mdx
+    format: frontmatter
+    create: true
+    identifier_field: client
+    fields:
+      - { name: type, label: Type, widget: hidden, default: 'case-study' }
+      - { name: client, label: Client, widget: string }
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: string }
+      - {
+          name: slug,
+          label: Slug,
+          widget: string,
+          Determines the page url. Must be unique from all other case studies.,
+        }
+      - { name: logo, label: Client Logo, widget: image }
+      - {
+          name: attachment,
+          label: Download,
+          widget: file,
+          hint: 'The file should be a PDF.',
+        }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: jobs
+    label: Jobs
+    label_singular: Job
+    folder: src/content/jobs
+    path: '{{title}}/index'
+    slug: '{{slug}}'
+    extension: mdx
+    format: frontmatter
+    create: true
+    identifier_field: title
+    fields:
+      - { name: type, label: Type, widget: hidden, default: 'job' }
+      - { name: title, label: Title, widget: string }
+      - { name: link, label: Link, widget: string }
+      - { name: isActive, label: IsActive, widget: 'boolean', default: true }
+    editor:
+      preview: false
+
+  - name: services
+    label: Services
+    label_singular: Service
+    folder: src/content/services
+    path: '{{title}}/index'
+    slug: '{{slug}}'
+    extension: mdx
+    format: frontmatter
+    create: true
+    fields:
+      - { name: 'type', label: Type, widget: hidden, default: 'service' }
+      - { name: title, label: Title, widget: string }
+      - { name: shortDescription, label: Short Description, widget: text }
+      - { name: longDescription, label: Long Description, widget: text }
+      - {
+          name: icon,
+          label: Icon,
+          widget: string,
+          hint: 'Needs to correspond with an SVG icon filename that has been added separately.',
+        }
+    editor:
+      preview: false
+
+  - name: team
+    label: Team Members
+    label_singular: Team Member
+    folder: src/content/team
+    path: '{{title}}/index'
+    slug: '{{slug}}'
+    extension: mdx
+    format: frontmatter
+    create: true
+    identifier_field: name
+    fields:
+      - { name: type, label: Type, widget: hidden, default: 'team' }
+      - { name: title, label: Title, widget: string }
+      - { name: name, label: Name, widget: string }
+      - { name: image, label: Image, widget: image }
+      - { name: twitter, label: Twitter, widget: string, required: false }
+      - { name: linkedin, label: LinkedIn, widget: string, required: false }
+      - { name: loves, label: Loves, widget: text }
+      - { name: goals, label: Goals, widget: text }
+      - { name: order, label: Sort Order, widget: number }
+    editor:
+      preview: false
+
+  - name: client
+    label: Clients
+    label_singular: Client
+    folder: src/content/clients
+    path: '{{name}}/index'
+    slug: '{{slug}}'
+    extension: mdx
+    format: frontmatter
+    create: true
+    identifier_field: name
+    fields:
+      - { name: type, label: Type, widget: hidden, default: 'client' }
+      - { name: name, label: Name, widget: string }
+      - { name: logo, label: Logo, widget: image }
+      - { name: order, label: Sort Order, widget: number }
+    editor:
+      preview: false

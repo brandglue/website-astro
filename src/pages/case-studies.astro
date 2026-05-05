@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseStudiesRoot from '../components/pages/CaseStudiesRoot';
+
+// All case studies sorted by client name
+const allCaseStudies = await getCollection('case-studies');
+allCaseStudies.sort((a, b) => a.data.client.localeCompare(b.data.client));
+
+const caseStudies = await Promise.all(
+  allCaseStudies.map(async (cs) => {
+    let logoSrc: string | undefined;
+    if (cs.data.logo) {
+      const img = await getImage({ src: cs.data.logo, width: 400, format: 'webp' });
+      logoSrc = img.src;
+    }
+    return {
+      client: cs.data.client,
+      title: cs.data.title,
+      description: cs.data.description,
+      slug: cs.data.slug,
+      logoSrc,
+    };
+  })
+);
+---
+
+<BaseLayout
+  title="Case Studies"
+  description="See how BrandGlue has helped clients with their social media strategy."
+  path="/case-studies/"
+  type="website"
+>
+  <CaseStudiesRoot client:load caseStudies={caseStudies} />
+</BaseLayout>

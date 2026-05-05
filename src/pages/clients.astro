@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ClientsRoot from '../components/pages/ClientsRoot';
+
+// All clients sorted by order
+const allClients = await getCollection('clients');
+allClients.sort((a, b) => a.data.order - b.data.order);
+
+const clients = await Promise.all(
+  allClients.map(async (client) => {
+    let logoSrc: string | undefined;
+    if (client.data.logo) {
+      const img = await getImage({ src: client.data.logo, width: 400, format: 'webp' });
+      logoSrc = img.src;
+    }
+    return { name: client.data.name, logoSrc };
+  })
+);
+---
+
+<BaseLayout
+  title="Clients"
+  description="See the list of clients BrandGlue has helped with their social media strategy."
+  path="/clients/"
+  type="website"
+>
+  <ClientsRoot client:load clients={clients} />
+</BaseLayout>

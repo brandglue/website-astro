@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactRoot from '../components/pages/ContactRoot';
+---
+
+<BaseLayout
+  title="Contact Us"
+  description="Get in touch with BrandGlue — we'd love to hear about your social media needs."
+  path="/contact/"
+  type="website"
+>
+  <ContactRoot client:load />
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServicesRoot from '../components/pages/ServicesRoot';
+
+// All services sorted by title
+const allServices = await getCollection('services');
+allServices.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const services = allServices.map((s) => ({
+  title: s.data.title,
+  shortDescription: s.data.shortDescription,
+  longDescription: s.data.longDescription,
+  icon: s.data.icon,
+}));
+---
+
+<BaseLayout
+  title="Services"
+  description="BrandGlue social media services — strategy, content, paid advertising, and more."
+  path="/services/"
+  type="website"
+>
+  <ServicesRoot client:load services={services} />
+</BaseLayout>

@@ -1,0 +1,120 @@
+import React, { ComponentType, FC } from 'react';
+
+import { Contact } from '@components/common';
+import { Box, Divider, H1, P } from '@components/core';
+import {
+  AudiencePersonas,
+  CommunityManagement,
+  ContentStrategy,
+  CustomerService,
+  DataAnalysis,
+  GraphicDesign,
+  NewsfeedOptimization,
+  PaidAdvertising,
+  SocialStrategy,
+} from '@media/svg';
+import { css, minMediaQuery, rhythm, scale, styled } from '@styles/index';
+
+const iconMap: Record<string, ComponentType> = {
+  AudiencePersonas,
+  CommunityManagement,
+  ContentStrategy,
+  CustomerService,
+  DataAnalysis,
+  GraphicDesign,
+  NewsfeedOptimization,
+  PaidAdvertising,
+  SocialStrategy,
+};
+
+interface IService {
+  title: string;
+  shortDescription: string;
+  longDescription?: string;
+  icon?: string;
+}
+
+interface IProps {
+  services: IService[];
+}
+
+export const ServicesPage: FC<IProps> = ({ services }) => {
+  return (
+    <>
+      <Divider />
+      <Box pb={0} variant="section">
+        <H1>There are a lot of ways we can help your brand get noticed.</H1>
+        <P>
+          When you&apos;re putting your brand on the line, you&apos;ll want the
+          experts to handle it. Here&apos;s how we can help.
+        </P>
+      </Box>
+      <Box>
+        {services.map((service, index) => {
+          const isEven = index % 2 === 0;
+          const Icon = service.icon ? iconMap[service.icon] : undefined;
+          return (
+            <ServiceWrapper key={service.title}>
+              <Service isEven={isEven} variant="section">
+                <ServiceText isEven={isEven}>
+                  <ServiceTitle>{service.title}</ServiceTitle>
+                  <h3>{service.shortDescription}</h3>
+                  <p>{service.longDescription}</p>
+                </ServiceText>
+                <ServiceImage>{Icon && <Icon />}</ServiceImage>
+              </Service>
+            </ServiceWrapper>
+          );
+        })}
+      </Box>
+      <Divider />
+      <Contact />
+    </>
+  );
+};
+
+const ServiceWrapper = styled(Box)`
+  &:nth-child(odd) {
+    background: ${({ theme }) => theme.colors.gray00};
+  }
+`;
+
+interface IServiceProps {
+  isEven: boolean;
+}
+
+const Service = styled(Box)<IServiceProps>`
+  display: flex;
+  flex-direction: column-reverse;
+  ${minMediaQuery.Small(css`
+    flex-direction: ${(props: any) => (props.isEven ? 'row' : 'row-reverse')};
+    align-items: center;
+  `)}
+`;
+
+const ServiceText = styled(Box)<IServiceProps>`
+  ${minMediaQuery.Small(css`
+    flex-basis: 70%;
+    margin-right: ${(props: any) => props.isEven && '10%'};
+    margin-left: ${(props: any) => !props.isEven && '10%'};
+  `)}
+`;
+
+const ServiceTitle = styled.h2`
+  font-size: ${scale(0.1).fontSize};
+  color: ${({ theme }) => theme.colors.gray04};
+`;
+
+const ServiceImage = styled(Box)`
+  margin-bottom: ${rhythm(1)};
+  svg {
+    width: 30%;
+  }
+  ${minMediaQuery.Small(css`
+    flex-basis: 20%;
+    margin-bottom: 0;
+    svg {
+      width: 100%;
+    }
+  `)}
+`;

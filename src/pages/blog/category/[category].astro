@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogRoot from '../../../components/pages/BlogRoot';
+import { getExcerpt } from '../../../utils/getExcerpt';
+
+// Simple kebabCase for category slugs (replaces lodash to avoid CJS issues)
+function toKebab(str: string): string {
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .replace(/[\s_]+/g, '-')
+    .toLowerCase();
+}
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+
+  // Gather all unique categories
+  const categorySet = new Set<string>();
+  for (const post of allPosts) {
+    for (const cat of post.data.categories ?? []) {
+      categorySet.add(cat);
+    }
+  }
+
+  function toKebabLocal(str: string): string {
+    return str
+      .replace(/([a-z])([A-Z])/g, '$1-$2')
+      .replace(/[\s_]+/g, '-')
+      .toLowerCase();
+  }
+
+  return [...categorySet].map((cat) => ({
+    params: { category: toKebabLocal(cat) },
+    props: {
+      categoryLabel: cat,
+      posts: allPosts.filter((p) => p.data.categories?.includes(cat)),
+    },
+  }));
+}
+
+const { categoryLabel, posts: rawPosts } = Astro.props;
+
+rawPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const posts = await Promise.all(
+  rawPosts.map(async (post) => {
+    let coverImageSrc: string | undefined;
+    if (post.data.cover_image) {
+      const img = await getImage({ src: post.data.cover_image, width: 1100, format: 'webp' });
+      coverImageSrc = img.src;
+    }
+    return {
+      slug: post.data.slug,
+      title: post.data.title,
+      excerpt: getExcerpt(post.body),
+      coverImageSrc,
+      categories: post.data.categories,
+    };
+  })
+);
+
+// Build categories with counts from all posts for the sidebar
+const allPosts = await getCollection('blog');
+const categoryMap = new Map<string, number>();
+for (const post of allPosts) {
+  for (const cat of post.data.categories ?? []) {
+    categoryMap.set(cat, (categoryMap.get(cat) ?? 0) + 1);
+  }
+}
+const categories = [...categoryMap.entries()]
+  .map(([value, totalCount]) => ({ value, totalCount }))
+  .sort((a, b) => a.value.localeCompare(b.value));
+
+const path = `/blog/category/${toKebab(categoryLabel)}/`;
+---
+
+<BaseLayout
+  title={`Blog — ${categoryLabel}`}
+  description={`BrandGlue blog posts in the ${categoryLabel} category.`}
+  path={path}
+  type="website"
+>
+  <BlogRoot client:load posts={posts} categories={categories} />
+</BaseLayout>
