@@ -11,9 +11,7 @@ import { theme } from '@styles/theme';
 const isSsr = typeof window === 'undefined';
 
 const AppStateWrapper: FC<{ children: ReactNode }> = ({ children }) => {
-  const [windowWidth, setWindowWidth] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth : 0,
-  );
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useLayoutEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
