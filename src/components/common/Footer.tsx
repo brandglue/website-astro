@@ -92,7 +92,7 @@ export const Footer: FC = () => (
       </Container>
     </Wrapper>
     <Copyright>
-      &copy; {new Date().getFullYear()} BrandGlue. All Rights Reserved.
+      &copy; 2026 BrandGlue. All Rights Reserved.
     </Copyright>
   </>
 );
