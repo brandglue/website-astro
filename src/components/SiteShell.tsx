@@ -8,8 +8,6 @@ import { GlobalStyles } from '@styles/globalStyles';
 import { ThemeProvider } from '@styles/styled';
 import { theme } from '@styles/theme';
 
-const isSsr = typeof window === 'undefined';
-
 const AppStateWrapper: FC<{ children: ReactNode }> = ({ children }) => {
   const [windowWidth, setWindowWidth] = useState(0);
 
@@ -44,21 +42,19 @@ interface IProps {
 const SiteShell: FC<IProps> = ({ children }) => {
   return (
     <>
-      {isSsr ? null : (
-        <noscript>
-          <style>{'html { visibility: visible !important; }'}</style>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              background: theme.colors.gray04.toString(),
-              color: theme.colors.white.toString(),
-            }}
-          >
-            This site works better with JavaScript enabled.
-          </div>
-        </noscript>
-      )}
+      <noscript>
+        <style>{'html { visibility: visible !important; }'}</style>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            background: theme.colors.gray04.toString(),
+            color: theme.colors.white.toString(),
+          }}
+        >
+          This site works better with JavaScript enabled.
+        </div>
+      </noscript>
       <AppStateWrapper>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
