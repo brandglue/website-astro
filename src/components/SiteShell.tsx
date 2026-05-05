@@ -68,7 +68,7 @@ interface IProps {
 
 const SiteShell: FC<IProps> = ({ children }) => {
   return (
-    <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+    <StyleSheetManager shouldForwardProp={shouldForwardProp} disableCSSOMInjection>
       <AppStateWrapper>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
