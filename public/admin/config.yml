@@ -3,6 +3,7 @@ logo_url: /admin/BrandGlueLogo.svg
 
 backend:
   name: git-gateway
+  branch: main
   squash_merges: true
 
 # Enable when using local git repo for populating cms
