@@ -15,6 +15,7 @@
     "@astrojs/mdx": "^5.0.2",
     "@astrojs/react": "^5.0.1",
     "@astrojs/sitemap": "^3.7.1",
+    "@emotion/is-prop-valid": "^1.4.0",
     "@mdx-js/react": "^3.1.1",
     "@types/lodash": "^4.17.24",
     "@types/lodash-es": "^4.17.12",
