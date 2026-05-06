@@ -82,19 +82,14 @@ const typographyCSS = typography.toString();
     <!-- Hide page on initial load until React hydrates with the correct layout.
          On View Transitions navigations, keep the page visible to avoid a flash.
          GlobalStyles (SC) also sets this rule but isn't SSR'd, so it arrives too late. -->
-    <style>
-      html.no-js:not(.vt-ready) { visibility: hidden; }
-      /*
-       * Menu visibility — prevents header flash before React hydrates.
-       * SC's responsive styles aren't available until hydration; these static rules
-       * immediately show the correct menu version for the current viewport width.
-       * Breakpoint matches Breakpoints.Large (1024px) from the theme.
-       */
-      @media (max-width: 1023px) { [data-menu="large"] { display: none !important; } }
-      @media (min-width: 1024px) {
-        [data-menu="large"] { display: flex !important; }
-        [data-menu="small-icon"] { display: none !important; }
-      }
+    <style>html.no-js:not(.vt-ready) { visibility: hidden; }</style>
+    <!-- Hide the mobile hamburger on large screens before React hydrates.
+         The SSR'd Header always renders the mobile layout (windowWidth initialises to 0),
+         so without this rule the hamburger briefly flashes during View Transitions.
+         data-hamburger is forwarded to the DOM by @emotion/is-prop-valid (data-* always valid).
+         Must be is:global — scoped styles don't reach inside React islands. -->
+    <style is:global>
+      @media (min-width: 1024px) { [data-hamburger] { display: none !important; } }
     </style>
     <script is:inline>
       document.addEventListener('astro:before-swap', (e) => {
