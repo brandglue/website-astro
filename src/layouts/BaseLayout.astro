@@ -82,14 +82,38 @@ const typographyCSS = typography.toString();
     <!-- Hide page on initial load until React hydrates with the correct layout.
          On View Transitions navigations, keep the page visible to avoid a flash.
          GlobalStyles (SC) also sets this rule but isn't SSR'd, so it arrives too late. -->
-    <style>html.no-js:not(.vt-ready) { visibility: hidden; }</style>
+    <style>
+      html.no-js:not(.vt-ready) { visibility: hidden; }
+      /*
+       * Menu visibility — prevents header flash before React hydrates.
+       * SC's responsive styles aren't available until hydration; these static rules
+       * immediately show the correct menu version for the current viewport width.
+       * Breakpoint matches Breakpoints.Large (1024px) from the theme.
+       */
+      @media (max-width: 1023px) { [data-menu="large"] { display: none !important; } }
+      @media (min-width: 1024px) {
+        [data-menu="large"] { display: flex !important; }
+        [data-menu="small-icon"] { display: none !important; }
+      }
+    </style>
     <script is:inline>
       document.addEventListener('astro:before-swap', (e) => {
-        // Copy styled-components style tags to the incoming document so there is
-        // no flash of unstyled content between the head swap and React re-hydration.
-        const scStyles = [...document.head.querySelectorAll('style[data-styled]')];
-        scStyles.forEach((style) => {
-          e.newDocument.head.appendChild(style.cloneNode(true));
+        // Snapshot all styled-components styles (works in both CSSOM/speedy mode and
+        // disableCSSOMInjection mode) and inject them into the incoming document so
+        // there is no flash of unstyled content between the head swap and hydration.
+        const scStyleEls = [...document.head.querySelectorAll('style[data-styled]')];
+        scStyleEls.forEach((styleEl) => {
+          const clone = /** @type {HTMLStyleElement} */ (styleEl.cloneNode(true));
+          // In production SC uses speedy/CSSOM mode: rules live in sheet.cssRules,
+          // not in textContent. Serialize them so the clone carries the actual CSS.
+          if (!clone.textContent?.trim() && styleEl.sheet) {
+            try {
+              clone.textContent = [...styleEl.sheet.cssRules]
+                .map((r) => r.cssText)
+                .join('\n');
+            } catch (_) {}
+          }
+          e.newDocument.head.appendChild(clone);
         });
         // Prevent the visibility:hidden rule from re-hiding the page on subsequent
         // navigations (the rule only applies to .no-js:not(.vt-ready)).

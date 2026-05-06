@@ -1,9 +1,8 @@
 import { MenuAltRight, X } from 'styled-icons/boxicons-regular';
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Box, Button, NavLink } from '@components/core';
 import { BrandGlueLogo } from '@media/svg/BrandGlueLogo';
-import { AppState } from '@src/AppState';
 import { css, minMediaQuery, rhythm, styled } from '@styles/index';
 import {
   TopLevelPages as Pages,
@@ -39,21 +38,29 @@ const menuItems: IMenuItem[] = [
 ];
 
 export const Header: FC = () => {
-  const { isLargeDevice } = useContext(AppState);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const handleMenuOpen = () => {
     setMenuOpen(!isMenuOpen);
   };
 
-  const smallDeviceMenu = (
+  return (
     <Container>
       <Wrapper>
         <LogoLink to={`/`} variant="invisible">
           <BrandGlueLogo />
         </LogoLink>
+        {/* Desktop nav — CSS hides this below 1024px (see BaseLayout.astro <style>) */}
+        <LargeDeviceMenu data-menu="large">
+          {menuItems.map((item) => (
+            <LargeDeviceLink key={item.label} to={`/${item.to}/`} variant="invisible">
+              {item.label}
+            </LargeDeviceLink>
+          ))}
+        </LargeDeviceMenu>
+        {/* Mobile hamburger — CSS hides this at 1024px+ (see BaseLayout.astro <style>) */}
         {!isMenuOpen && (
-          <SmallMenuIconWrapper onClick={handleMenuOpen}>
+          <SmallMenuIconWrapper data-menu="small-icon" onClick={handleMenuOpen}>
             <MenuAltRight />
           </SmallMenuIconWrapper>
         )}
@@ -64,48 +71,21 @@ export const Header: FC = () => {
             <X />
           </CloseButton>
           <SmallMenu>
-            {menuItems.map((item) => {
-              return (
-                <SmallLink
-                  key={item.label}
-                  onClick={handleMenuOpen}
-                  to={`/${item.to}/`}
-                  variant="invisible"
-                >
-                  {item.label}
-                </SmallLink>
-              );
-            })}
+            {menuItems.map((item) => (
+              <SmallLink
+                key={item.label}
+                onClick={handleMenuOpen}
+                to={`/${item.to}/`}
+                variant="invisible"
+              >
+                {item.label}
+              </SmallLink>
+            ))}
           </SmallMenu>
         </SmallMenuWrapper>
       )}
     </Container>
   );
-
-  const largeDeviceMenu = (
-    <Container>
-      <Wrapper>
-        <LogoLink to={`/`} variant="invisible">
-          <BrandGlueLogo />
-        </LogoLink>
-        <LargeDeviceMenu>
-          {menuItems.map((item) => {
-            return (
-              <LargeDeviceLink
-                key={item.label}
-                to={`/${item.to}/`}
-                variant="invisible"
-              >
-                {item.label}
-              </LargeDeviceLink>
-            );
-          })}
-        </LargeDeviceMenu>
-      </Wrapper>
-    </Container>
-  );
-
-  return isLargeDevice ? largeDeviceMenu : smallDeviceMenu;
 };
 
 const Container = styled.header`
