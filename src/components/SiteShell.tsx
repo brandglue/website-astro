@@ -39,6 +39,19 @@ const AppStateWrapper: FC<{ children: ReactNode }> = ({ children }) => {
   const [windowWidth, setWindowWidth] = useState(0);
 
   useLayoutEffect(() => {
+    // SC v6 uses CSSOM insertRule() in production — rules live in sheet.cssRules,
+    // not in style.textContent. Materialize them to DOM text now, before the page
+    // becomes visible, so they reliably apply in all environments (CDNs, etc.).
+    // This runs after all React renders (and SC CSSOM injections) but before paint.
+    document.head.querySelectorAll('style[data-styled]').forEach((el) => {
+      const s = el as HTMLStyleElement;
+      if (!s.textContent?.trim() && s.sheet) {
+        try {
+          s.textContent = [...s.sheet.cssRules].map((r) => r.cssText).join('\n');
+        } catch (_) {}
+      }
+    });
+
     const handleResize = () => setWindowWidth(window.innerWidth);
 
     // Sync in case the window resized between SSR and hydration
