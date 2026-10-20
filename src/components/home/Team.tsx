@@ -40,10 +40,9 @@ export const Team: FC<IProps> = ({ teamMembers }) => {
           </Text>
           <Photos>
             {teamMembers.map((member) => (
-              <Image
+              <RoundedImage
                 key={member.name}
                 alt={member.name}
-                css={{ borderRadius: '5px' }}
                 src={member.imageSrc}
                 mb={0}
               />
@@ -97,4 +96,11 @@ const Photos = styled(Box)`
   ${minMediaQuery.Medium(css`
     width: auto;
   `)}
+`;
+
+// Avoid the `css` prop: babel-plugin-styled-components then stops recognising this
+// file's `styled` import, leaving componentIds to a runtime counter that differs
+// between SSR and client (mismatched class names after hydration).
+const RoundedImage = styled(Image)`
+  border-radius: 5px;
 `;

@@ -22,9 +22,8 @@ export const BlogPost: FC<IProps> = ({ latestPost }) => {
       <Container variant="section">
         <CoverImage>
           {latestPost.coverImageSrc && (
-            <Image
+            <RoundedImage
               alt={latestPost.title}
-              css={{ borderRadius: '5px' }}
               src={latestPost.coverImageSrc}
               mb={0}
             />
@@ -69,6 +68,13 @@ const CoverImage = styled(Box)`
       margin: 20px 20px 20px 0;
     `)}
   `}
+`;
+
+// Avoid the `css` prop: babel-plugin-styled-components then stops recognising this
+// file's `styled` import, leaving componentIds to a runtime counter that differs
+// between SSR and client (mismatched class names after hydration).
+const RoundedImage = styled(Image)`
+  border-radius: 5px;
 `;
 
 const Text = styled(Box)`

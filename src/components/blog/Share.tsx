@@ -67,8 +67,7 @@ export const Share: FC<IProps> = ({ url = '' }) => {
         >
           <Linkedin />
         </Anchor>
-        <Anchor
-          css={{ verticalAlign: 'middle' }}
+        <EmailAnchor
           hasArrow={false}
           href={emailUrl}
           rel="noopener noreferrer nofollow"
@@ -76,7 +75,7 @@ export const Share: FC<IProps> = ({ url = '' }) => {
           variant="invisible"
         >
           <MailSend />
-        </Anchor>
+        </EmailAnchor>
       </IconWrapper>
     </Wrapper>
   );
@@ -96,6 +95,13 @@ const Wrapper = styled(Box)`
     justify-content: space-between;
     align-items: center;
   `)}
+`;
+
+// Avoid the `css` prop: babel-plugin-styled-components then stops recognising this
+// file's `styled` import, leaving componentIds to a runtime counter that differs
+// between SSR and client (mismatched class names after hydration).
+const EmailAnchor = styled(Anchor)`
+  vertical-align: middle;
 `;
 
 const IconWrapper = styled(Box)`

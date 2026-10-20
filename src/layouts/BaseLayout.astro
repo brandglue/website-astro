@@ -93,22 +93,21 @@ const typographyCSS = typography.toString();
     </style>
     <script is:inline>
       document.addEventListener('astro:before-swap', (e) => {
-        // Snapshot all styled-components styles (works in both CSSOM/speedy mode and
-        // disableCSSOMInjection mode) and inject them into the incoming document so
-        // there is no flash of unstyled content between the head swap and hydration.
-        const scStyleEls = [...document.head.querySelectorAll('style[data-styled]')];
-        scStyleEls.forEach((styleEl) => {
-          const clone = /** @type {HTMLStyleElement} */ (styleEl.cloneNode(true));
-          // In production SC uses speedy/CSSOM mode: rules live in sheet.cssRules,
-          // not in textContent. Serialize them so the clone carries the actual CSS.
-          if (!clone.textContent?.trim() && styleEl.sheet) {
-            try {
-              clone.textContent = [...styleEl.sheet.cssRules]
-                .map((r) => r.cssText)
-                .join('\n');
-            } catch (_) {}
-          }
-          e.newDocument.head.appendChild(clone);
+        // Keep styled-components' live <style> element(s) across the head swap.
+        // SC holds a reference to this element's CSSStyleSheet and, in production
+        // (speedy/CSSOM mode), inserts rules via insertRule() — textContent is empty.
+        // Astro only keeps an old <style> whose textContent matches one in the new
+        // document, so in prod the live tag was dropped and SC kept writing the next
+        // page's rules into a detached sheet (unstyled pages after navigation).
+        // A cloned copy doesn't help for the same reason. Instead, mark the live tag
+        // persistent and give the incoming head a placeholder with the same id;
+        // Astro then keeps the original element and drops the placeholder.
+        document.head.querySelectorAll('style[data-styled]').forEach((styleEl, i) => {
+          const id = `styled-components-${i}`;
+          styleEl.setAttribute('data-astro-transition-persist', id);
+          const placeholder = e.newDocument.createElement('style');
+          placeholder.setAttribute('data-astro-transition-persist', id);
+          e.newDocument.head.appendChild(placeholder);
         });
         // Prevent the visibility:hidden rule from re-hiding the page on subsequent
         // navigations (the rule only applies to .no-js:not(.vt-ready)).
