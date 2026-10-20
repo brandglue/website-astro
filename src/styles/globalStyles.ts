@@ -1,6 +1,5 @@
 import Typography from 'typography';
 
-import { createGlobalStyle } from './styled';
 import { theme } from './theme';
 
 export const typography = new Typography({
@@ -22,101 +21,100 @@ export const typography = new Typography({
 
 export const { scale, rhythm, options } = typography;
 
-export const GlobalStyles = createGlobalStyle`
+// Site-wide base styles. Plain CSS (not createGlobalStyle) so BaseLayout can render
+// it into <head> at build time:
+// - it is present in the SSR HTML, so it applies before React hydrates;
+// - it survives View Transitions. SC removes a createGlobalStyle's rules when its
+//   component unmounts, so between the old island unmounting and the new one
+//   hydrating (100-300ms on Netlify) headings lost their colour/uppercase styling.
+// The html.no-js visibility rule lives in BaseLayout (with its vt-ready exception).
+export const globalCSS = `
   *, *:before, *:after {
     box-sizing: border-box;
-  }
-
-  html {
-    &.no-js {
-      visibility: hidden;
-    }
   }
 
   body {
     background: ${theme.colors.white};
     color: ${theme.colors.gray06};
     overflow: hidden;
+  }
 
-    h1, h2, h3, h4, h5 {
-      font-weight: 700;
-      line-height: 1.3;
-    }
+  body h1, body h2, body h3, body h4, body h5 {
+    font-weight: 700;
+    line-height: 1.3;
+  }
 
-    h1, h2 {
-      color: ${theme.colors.darkBlue};
-      text-transform: uppercase;
-      white-space: pre-wrap;
-    }
+  body h1, body h2 {
+    color: ${theme.colors.darkBlue};
+    text-transform: uppercase;
+    white-space: pre-wrap;
+  }
 
-    h2 {
-      margin-bottom: ${rhythm(1)};
-    }
+  body h2 {
+    margin-bottom: ${rhythm(1)};
+  }
 
-    h1, h3, h4, h5 {
-      margin-bottom: ${rhythm(0.5)};
-    }
+  body h1, body h3, body h4, body h5 {
+    margin-bottom: ${rhythm(0.5)};
+  }
 
-    h5 {
-      text-transform: uppercase;
-    }
+  body h5 {
+    text-transform: uppercase;
+  }
 
-    p {
-      font-weight: 400;
-    }
+  body p {
+    font-weight: 400;
+  }
 
-    ul {
-      list-style: disc;
-    }
+  body ul {
+    list-style: disc;
+  }
 
-    ol {
-      list-style: decimal;
-    }
+  body ol {
+    list-style: decimal;
+  }
 
-    li > ol, li > ul {
-      margin-left: 20px;
-      margin-bottom: 0;
-    }
+  body li > ol, body li > ul {
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
 
-    blockquote {
-      margin-left: 1em;
-      padding-left: 1em;
-      border-left: 3px solid ${theme.colors.gray02};
-    }
+  body blockquote {
+    margin-left: 1em;
+    padding-left: 1em;
+    border-left: 3px solid ${theme.colors.gray02};
+  }
 
-    em {
-      font-style: italic;
-    }
+  body em {
+    font-style: italic;
+  }
 
-    strong {
-      font-weight: 700;
-    }
+  body strong {
+    font-weight: 700;
+  }
 
-    a {
-      display: inline;
-      color: ${theme.colors.blue};
-      padding-bottom: 1px;
-      border-bottom: 1px solid currentColor;
-      text-decoration: none;
-      cursor: pointer;
+  body a {
+    display: inline;
+    color: ${theme.colors.blue};
+    padding-bottom: 1px;
+    border-bottom: 1px solid currentColor;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-      &:hover {
-        opacity: 0.8;
-      }
-    }
+  body a:hover {
+    opacity: 0.8;
   }
 
   /* Styling breadcrumbs here because the Breadcrumb plugin component doesn't give direct access to the parent wrappers */
-  .breadcrumb {
-    .breadcrumb__list {
-      font-size: ${scale(-0.25).fontSize};
-      list-style: none;
-      margin-left: 0;
-      padding-left: 0;
-    }
+  .breadcrumb .breadcrumb__list {
+    font-size: ${scale(-0.25).fontSize};
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
 
-    .breadcrumb__list__item {
-      display: inline;
-    }
+  .breadcrumb .breadcrumb__list__item {
+    display: inline;
   }
 `;

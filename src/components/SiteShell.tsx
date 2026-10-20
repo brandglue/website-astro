@@ -5,7 +5,7 @@ import { Footer, Header } from '@components/common';
 import { IAppState } from '@models/AppState';
 import { AppState } from '@src/AppState';
 import { Breakpoints } from '@styles/index';
-import { GlobalStyles } from '@styles/globalStyles';
+import { getServerStyleSheet } from '@styles/ssr';
 import { StyleSheetManager, ThemeProvider } from '@styles/styled';
 import { theme } from '@styles/theme';
 
@@ -74,11 +74,17 @@ interface IProps {
 }
 
 const SiteShell: FC<IProps> = ({ children }) => {
+  // Server-side only: collect this page's SC CSS so middleware.ts can inline it
+  // into <head>. StyleSheetManager renders no DOM, so SSR/client markup still match.
+  const serverSheet = getServerStyleSheet();
+
   return (
-    <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+    <StyleSheetManager
+      sheet={serverSheet?.instance}
+      shouldForwardProp={shouldForwardProp}
+    >
       <AppStateWrapper>
         <ThemeProvider theme={theme}>
-          <GlobalStyles />
           <Header />
           {children}
           <Footer />

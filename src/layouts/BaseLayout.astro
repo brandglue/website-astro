@@ -2,7 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import { getImage } from 'astro:assets';
 import defaultHeroImage from '@media/images/homepage-hero-poster.jpg';
-import { typography } from '@styles/globalStyles';
+import { globalCSS, typography } from '@styles/globalStyles';
 
 interface Props {
   title?: string;
@@ -79,9 +79,12 @@ const typographyCSS = typography.toString();
     <!-- Typography.js base styles -->
     <style set:html={typographyCSS}></style>
 
+    <!-- Site-wide base styles (headings, links, etc.). Static CSS rather than SC
+         createGlobalStyle so it is SSR'd and survives View Transitions — see globalStyles.ts. -->
+    <style set:html={globalCSS}></style>
+
     <!-- Hide page on initial load until React hydrates with the correct layout.
-         On View Transitions navigations, keep the page visible to avoid a flash.
-         GlobalStyles (SC) also sets this rule but isn't SSR'd, so it arrives too late. -->
+         On View Transitions navigations, keep the page visible to avoid a flash. -->
     <style>html.no-js:not(.vt-ready) { visibility: hidden; }</style>
     <!-- Hide the mobile hamburger on large screens before React hydrates.
          The SSR'd Header always renders the mobile layout (windowWidth initialises to 0),
