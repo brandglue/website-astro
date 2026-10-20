@@ -33,7 +33,11 @@ const Container = styled(Box)`
   position: relative;
 `;
 
+// Explicit height (not just max-height) so the box is reserved before the video's
+// poster/metadata load — otherwise it lays out at 0px for a frame and pushes the
+// rest of the page down (CLS ~0.22 on cold loads).
 const HeroVideo = styled.video`
+  height: 400px;
   max-height: 400px;
   width: 100%;
   object-fit: cover;
