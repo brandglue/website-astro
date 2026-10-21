@@ -17,3 +17,6 @@
 
 # case-studies
 /case-studies/* /clients
+
+# sitemap (Gatsby served it under /sitemap/; Astro writes it to the root)
+/sitemap/* /:splat 301

@@ -4,6 +4,8 @@ import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
+import remarkEmbedVideo from './src/utils/remarkEmbedVideo.mjs';
+
 /**
  * Vite plugin: rewrites `import { ..., styled, ... } from '@styles/index'` (and
  * '@styles/styled') to use `import styled from 'styled-components'` directly.
@@ -59,6 +61,10 @@ function fixStyledImportsForBabel() {
 export default defineConfig({
   site: 'https://brandglue.com',
   trailingSlash: 'always',
+  // Inherited by @astrojs/mdx (extendMarkdownConfig defaults to true).
+  markdown: {
+    remarkPlugins: [remarkEmbedVideo],
+  },
   integrations: [
     react({
       babel: {
