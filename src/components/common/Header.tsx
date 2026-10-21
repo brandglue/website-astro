@@ -1,9 +1,8 @@
 import { MenuAltRight, X } from 'styled-icons/boxicons-regular';
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Box, Button, NavLink } from '@components/core';
 import { BrandGlueLogo } from '@media/svg/BrandGlueLogo';
-import { AppState } from '@src/AppState';
 import { css, minMediaQuery, rhythm, styled } from '@styles/index';
 import {
   TopLevelPages as Pages,
@@ -38,25 +37,41 @@ const menuItems: IMenuItem[] = [
   },
 ];
 
+// Both menus are always rendered and switched with CSS media queries rather than
+// the JS isLargeDevice flag. The SSR'd markup assumes windowWidth 0, so choosing in
+// JS meant desktop visitors saw only the logo (hamburger hidden, no links) between a
+// View Transitions swap and hydration — 100-500ms on Netlify.
 export const Header: FC = () => {
-  const { isLargeDevice } = useContext(AppState);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const handleMenuOpen = () => {
     setMenuOpen(!isMenuOpen);
   };
 
-  const smallDeviceMenu = (
+  return (
     <Container>
       <Wrapper>
         <LogoLink to={`/`} variant="invisible">
           <BrandGlueLogo />
         </LogoLink>
         {!isMenuOpen && (
-          <SmallMenuIconWrapper data-hamburger onClick={handleMenuOpen}>
+          <SmallMenuIconWrapper onClick={handleMenuOpen}>
             <MenuAltRight />
           </SmallMenuIconWrapper>
         )}
+        <LargeDeviceMenu>
+          {menuItems.map((item) => {
+            return (
+              <LargeDeviceLink
+                key={item.label}
+                to={`/${item.to}/`}
+                variant="invisible"
+              >
+                {item.label}
+              </LargeDeviceLink>
+            );
+          })}
+        </LargeDeviceMenu>
       </Wrapper>
       {isMenuOpen && (
         <SmallMenuWrapper>
@@ -81,31 +96,6 @@ export const Header: FC = () => {
       )}
     </Container>
   );
-
-  const largeDeviceMenu = (
-    <Container>
-      <Wrapper>
-        <LogoLink to={`/`} variant="invisible">
-          <BrandGlueLogo />
-        </LogoLink>
-        <LargeDeviceMenu>
-          {menuItems.map((item) => {
-            return (
-              <LargeDeviceLink
-                key={item.label}
-                to={`/${item.to}/`}
-                variant="invisible"
-              >
-                {item.label}
-              </LargeDeviceLink>
-            );
-          })}
-        </LargeDeviceMenu>
-      </Wrapper>
-    </Container>
-  );
-
-  return isLargeDevice ? largeDeviceMenu : smallDeviceMenu;
 };
 
 const Container = styled.header`
@@ -146,6 +136,10 @@ const LogoLink = styled(NavLink)`
 const SmallMenuIconWrapper = styled.div`
   color: ${({ theme }) => theme.colors.black};
   width: 40px;
+
+  ${minMediaQuery.Large(css`
+    display: none;
+  `)}
 `;
 
 const SmallMenuWrapper = styled.div`
@@ -157,6 +151,11 @@ const SmallMenuWrapper = styled.div`
   background: ${({ theme }) => theme.colors.darkBlue};
   border-left: 1px solid ${({ theme }) => theme.colors.white};
   z-index: 999;
+
+  /* If the window is widened while the menu is open, the desktop nav takes over */
+  ${minMediaQuery.Large(css`
+    display: none;
+  `)}
 `;
 
 const CloseButton = styled(Button)`
@@ -192,9 +191,13 @@ const SmallLink = styled(NavLink)`
 
 const LargeDeviceMenu = styled.nav`
   flex: 1 1 auto;
-  display: flex;
+  display: none;
   justify-content: flex-end;
   align-items: center;
+
+  ${minMediaQuery.Large(css`
+    display: flex;
+  `)}
 `;
 
 const LargeDeviceLink = styled(NavLink)`
