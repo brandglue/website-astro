@@ -7,7 +7,53 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Include the script that builds the page and powers Decap CMS.
+         Pinned to an exact version so CMS updates are deliberate, not automatic. -->
+    <script src="https://unpkg.com/decap-cms@3.17.1/dist/decap-cms.js"></script>
+    <script>
+      // Site typography + global styles in the preview pane (src/pages/admin/preview.css.ts)
+      CMS.registerPreviewStyle('/admin/preview.css');
+
+      // Preview templates: show the content as it reads on the site instead of
+      // Decap's default dump of every field (author, date, slug, ...).
+      // `h` and `createClass` are globals provided by the Decap CDN build.
+      const image = (entry, getAsset, field, style) => {
+        const value = entry.getIn(['data', field]);
+        return value ? h('img', { src: getAsset(value).toString(), style }) : null;
+      };
+
+      CMS.registerPreviewTemplate(
+        'blog',
+        createClass({
+          render() {
+            const { entry, getAsset, widgetFor } = this.props;
+            return h(
+              'article',
+              {},
+              h('h1', {}, entry.getIn(['data', 'title'])),
+              image(entry, getAsset, 'cover_image', { maxWidth: '100%', marginBottom: '1.5em' }),
+              widgetFor('body'),
+            );
+          },
+        }),
+      );
+
+      CMS.registerPreviewTemplate(
+        'case-studies',
+        createClass({
+          render() {
+            const { entry, getAsset, widgetFor } = this.props;
+            return h(
+              'article',
+              {},
+              h('h5', {}, entry.getIn(['data', 'client'])),
+              h('h1', {}, entry.getIn(['data', 'title'])),
+              image(entry, getAsset, 'logo', { maxWidth: '200px', marginBottom: '1.5em' }),
+              widgetFor('body'),
+            );
+          },
+        }),
+      );
+    </script>
   </body>
 </html>

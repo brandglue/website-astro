@@ -22,7 +22,29 @@ if (cs.data.logo) {
   logoSrc = img.src;
 }
 
-const attachment = cs.data.attachment ?? cs.data.attachments;
+// Attachments are stored next to the entry's index.mdx (`./case-study.pdf`, or a bare
+// filename from a CMS upload). Used as a raw href they pointed at
+// /case-studies/<slug>/case-study.pdf, which the build never emits — resolve them
+// through Vite instead so the file is bundled and gets a real URL.
+const attachmentFiles = import.meta.glob<string>('/src/content/case-studies/**/*.pdf', {
+  query: '?url',
+  import: 'default',
+  eager: true,
+});
+const rawAttachment = cs.data.attachment ?? cs.data.attachments;
+let attachment: string | undefined;
+if (rawAttachment) {
+  if (/^(https?:)?\/\//.test(rawAttachment) || rawAttachment.startsWith('/')) {
+    attachment = rawAttachment;
+  } else {
+    const entryDir = `/${cs.filePath}`.replace(/\/[^/]+$/, '');
+    const key = new URL(rawAttachment, `file://${entryDir}/`).pathname;
+    attachment = attachmentFiles[key];
+    if (!attachment) {
+      throw new Error(`Case study "${cs.id}": attachment "${rawAttachment}" not found at ${key}`);
+    }
+  }
+}
 
 const path = `/case-studies/${cs.data.slug}/`;
 const crumbs = [

@@ -6,11 +6,16 @@ backend:
   branch: main
   squash_merges: true
 
-# Enable when using local git repo for populating cms
-# local_backend: true
+# Lets `npm run cms` (decap-server) edit the local repo without logging in.
+# Decap only uses the local backend when the admin is opened on localhost.
+local_backend: true
 
 publish_mode: editorial_workflow
 
+# Default for collections without their own media settings. Collections with
+# image/file fields override this to store uploads next to each entry's index.mdx
+# (e.g. `cover_image: photo.jpg`), which is what Astro's image() schema expects —
+# an absolute /uploads/... path fails the build with ImageNotFound.
 media_folder: public/uploads
 public_folder: /uploads
 
@@ -21,7 +26,9 @@ collections:
     folder: src/content/blog
     path: '{{year}}/{{month}}/{{title}}/index'
     slug: '{{slug}}'
-    preview_path: blog/{{title}}
+    preview_path: blog/{{fields.slug}}/
+    media_folder: ''
+    public_folder: ''
     extension: mdx
     format: frontmatter
     create: true
@@ -57,13 +64,10 @@ collections:
           options: ['Tips', 'News', 'Design', 'Advertising', 'Case Studies'],
         }
       - { name: body, label: Body, widget: markdown }
-    view_filters:
-      - label: 'Published: 2020'
+    view_groups:
+      - label: Year
         field: date
-        pattern: '2020'
-      - label: Drafts
-        field: draft
-        pattern: true
+        pattern: '\d{4}'
 
   - name: case-studies
     label: Case Studies
@@ -71,7 +75,9 @@ collections:
     folder: src/content/case-studies
     path: '{{title}}/index'
     slug: '{{slug}}'
-    preview_path: case-study/{{title}}
+    preview_path: case-studies/{{fields.slug}}/
+    media_folder: ''
+    public_folder: ''
     extension: mdx
     format: frontmatter
     create: true
@@ -85,7 +91,7 @@ collections:
           name: slug,
           label: Slug,
           widget: string,
-          Determines the page url. Must be unique from all other case studies.,
+          hint: 'The final part of the page url. Must be unique from all other case studies. Example: put "my-client" as the Slug if you want the final url to be https://brandglue.com/case-studies/my-client',
         }
       - { name: logo, label: Client Logo, widget: image }
       - {
@@ -141,8 +147,12 @@ collections:
     label: Team Members
     label_singular: Team Member
     folder: src/content/team
-    path: '{{title}}/index'
+    # {{slug}} is the slugified identifier_field (name). Using {{title}} (the job
+    # title) made two people with the same role collide on one folder.
+    path: '{{slug}}/index'
     slug: '{{slug}}'
+    media_folder: ''
+    public_folder: ''
     extension: mdx
     format: frontmatter
     create: true
@@ -166,6 +176,8 @@ collections:
     folder: src/content/clients
     path: '{{name}}/index'
     slug: '{{slug}}'
+    media_folder: ''
+    public_folder: ''
     extension: mdx
     format: frontmatter
     create: true
