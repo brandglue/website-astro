@@ -108,6 +108,24 @@ const typographyCSS = typography.toString();
         // navigations (the rule only applies to .no-js:not(.vt-ready)).
         e.newDocument.documentElement.classList.add('vt-ready');
       });
+
+      document.addEventListener('astro:after-swap', () => {
+        // Astro keeps the persisted SC tag in place and appends the new page's head
+        // after it, so the new page's SSR'd SC CSS (style[data-sc-ssr]) ends up AFTER
+        // the live tag. Same-specificity overrides that only exist client-side (e.g.
+        // the mobile menu's white links over NavLink's `color: currentColor`) then
+        // lose. Restore the initial-load order: SSR CSS first, live SC tag last.
+        // Moving the SSR tag is safe — its rules are in its text and get re-parsed;
+        // the live tag must not move (its rules exist only in the CSSOM).
+        const live = document.head.querySelector('style[data-styled]');
+        if (live) {
+          document.head.querySelectorAll('style[data-sc-ssr]').forEach((ssr) => {
+            if (live.compareDocumentPosition(ssr) & Node.DOCUMENT_POSITION_FOLLOWING) {
+              live.before(ssr);
+            }
+          });
+        }
+      });
     </script>
 
     <!-- Google Analytics (production only) -->
